@@ -1,3 +1,43 @@
+# from flask import Flask, render_template, request
+# import pickle
+# import os
+
+# app = Flask(__name__)
+
+# model_path = os.path.join(os.path.dirname(__file__), "iris_model.pkl")
+# model = pickle.load(open(model_path, "rb"))
+
+# @app.route("/")
+# def home():
+#     return render_template("index.html")
+
+# @app.route("/predict", methods=["POST"])
+# def predict():
+#     try:
+#         sl = float(request.form["sl"])
+#         sw = float(request.form["sw"])
+#         pl = float(request.form["pl"])
+#         pw = float(request.form["pw"])
+
+#         prediction = model.predict([[sl, sw, pl, pw]])
+
+#         if prediction[0] == 0:
+#             result = "Setosa 🌼"
+#         elif prediction[0] == 1:
+#             result = "Versicolor 🌺"
+#         else:
+#             result = "Virginica 🌸"
+
+#     except:
+#         result = "Invalid Input ❌"
+
+#     return render_template("index.html", result=result)
+
+# if __name__ == "__main__":
+#     app.run(debug=True)
+
+# ===========================================================================================
+# ===========================================================================================
 from flask import Flask, render_template, request
 import pickle
 import os
@@ -13,29 +53,24 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    try:
-        sl = float(request.form["sl"])
-        sw = float(request.form["sw"])
-        pl = float(request.form["pl"])
-        pw = float(request.form["pw"])
+    sl = float(request.form["sl"])
+    sw = float(request.form["sw"])
+    pl = float(request.form["pl"])
+    pw = float(request.form["pw"])
 
-        prediction = model.predict([[sl, sw, pl, pw]])
+    prediction = model.predict([[sl, sw, pl, pw]])
 
-        if prediction[0] == 0:
-            result = "Setosa 🌼"
-        elif prediction[0] == 1:
-            result = "Versicolor 🌺"
-        else:
-            result = "Virginica 🌸"
-
-    except:
-        result = "Invalid Input ❌"
+    if prediction[0] == 0:
+        result = "Setosa 🌼"
+    elif prediction[0] == 1:
+        result = "Versicolor 🌺"
+    else:
+        result = "Virginica 🌸"
 
     return render_template("index.html", result=result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
-
+    app.run()
 # ===========================================================================================
 # ===========================================================================================
 # ===========================================================================================
